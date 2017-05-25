@@ -8,6 +8,7 @@ div {
 	align-items: center;
 	padding: 0;
 	margin: auto;
+	position: relative;
 }
 h1, h2, h3, h4, h5{
 	padding: 0;
@@ -19,36 +20,60 @@ h1, h2, h3, h4, h5{
 	max-width: 600px;
 }
 .minus-div {
+	color: white;
 	position: relative;
 	text-align: right;
 	padding: 1px;
+	cursor: default;
 }
 .minus-button {
+	background-color: black;
+	border: 1px solid gray;
+	border-radius: 10px 0 0 10px;
 	position: absolute;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: right;
 	top: 20%;
 	right: -10%;
 	height: 55%;
-	width : 75%;
-	border: 2px solid black;
-	border-radius: 10px 0 0 10px;
+	width : 25px;
 	padding: 0;
-	margin: 0;
+	margin: 0;	
+	z-index: 5;
 	cursor: pointer;
 }
+.minus-button h3{
+	position: absolute;
+	top: -38%;
+	right: 10%;
+}
 .plus-div {
+	color: white;
 	position: relative;
 	text-align: left;
-	padding: 1px;
+	padding: 1px;	
+	cursor: default;
 }
 .plus-button {
+	background-color: black;
+	border: 1px solid gray;
+	border-radius: 0 10px 10px 0;
 	position: absolute;
+	overflow: hidden;
+	vertical-align: middle;
+	text-align: left;
 	top: 20%;
 	left: -5%;
 	height: 55%;
-	width : 75%;
-	border: 2px solid black;
-	border-radius: 0 10px 10px 0;
+	width : 25px;
 	padding: 0;
 	margin: 0;
+	z-index: 5;
 	cursor: pointer;
+}
+.plus-button h3{
+	position: absolute;
+	top: -38%;
+	left: 10%;
 }

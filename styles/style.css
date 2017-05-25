@@ -1,0 +1,54 @@
+body {
+	background-color: #dddddd;
+	text-align: center;
+}
+div {
+	align-self: center;	
+	align-content: center;
+	align-items: center;
+	padding: 0;
+	margin: auto;	
+}
+h1, h2, h3, h4 ,h5{
+	padding: 0;
+	margin-left: 0;
+	margin-right: 0;
+}
+.primary {
+	min-width: 460px;
+	max-width: 600px;
+}
+.minus {	
+	position: relative;
+	text-align: right;
+	padding: 1px;	
+}
+.minus::after {
+  content: " ";
+  position: absolute;
+  z-index: 5;
+	width: 35px;
+  top: 8px;
+	left: auto;
+  right: -9px;
+  bottom: 8px;
+  border: 2px solid black;
+	border-radius: 12px 0px 0px 12px;	
+}
+.plus {
+	position: relative;
+	text-align: left;
+	padding: 1px;
+}
+.plus::before {
+  content: " ";
+  position: absolute;
+  z-index: 5;
+	width: 35px;
+  top: 8px;
+	left: -7px;
+  right: auto;
+  bottom: 8px;
+  border: 2px solid black;
+	border-radius: 0px 12px 12px 0px;	
+}

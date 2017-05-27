@@ -12,34 +12,64 @@ $(function () {
 		var int = parseInt(strInt);
 		return ++int > 99 ? 99 : int;
 	}
+	function updateIdleTimer (mins) {
+		if(curState === "idle")
+			$("#time-display").html("<h4>" + (mins < 10 ? "0" + mins : mins) + ":00" + "</h4>");
+	}
 	function startTimer(mins) {
-		var startTime = new Date;		
-		return setInterval(function(){
-			var curTime = new Date; // *** Continue Here ***
-			$("#time-display h2").html();
-		});
+		var startTime = new Date;
+		var timerms = mins * 60000 + 1000; // Date is in milliseconds. 1 extra second to account for Math.floor()
+		curState = "working";
+
+		$("#action-button").html("<h4>Reset</h4>");
+		$("#time-display").html("<h1>" + (mins < 10 ? "0" + mins : mins) + ":00" + "</h1>");
+
+		return setInterval(function() {
+			var counterTime = timerms - (Date.now() - startTime);
+
+			var displayMins = Math.floor(counterTime / 60000);
+			counterTime -= 60000 * displayMins;
+			var displaySeconds = Math.floor(counterTime / 1000);
+
+			displayMins = displayMins < 10 ? "0" + displayMins : displayMins;
+			displaySeconds = displaySeconds < 10 ? "0" + displaySeconds : displaySeconds;
+			$("#time-display h1").html(displayMins + ":" + displaySeconds);
+		}, 100);
+	}
+	function resetTimer(timer) {
+		clearInterval(timer);
+		curState = "idle";
+		$("#action-button").html("<h2>Start</h2>");
+		updateIdleTimer(startWorkMins);		
 	}
 
 	$("#work-time-minus").click(function() {
 		startWorkMins = sub1Floor1($("#work-time").html());
 		$("#work-time").html(startWorkMins);
+		updateIdleTimer(startWorkMins);
 	});
 	$("#break-time-minus").click(function() {
 		startBreakMins = sub1Floor1($("#break-time").html())
 		$("#break-time").html(startBreakMins);
+		updateIdleTimer(startWorkMins);
 	});
 	$("#work-time-plus").click(function() {
 		startWorkMins = add1Ciel99($("#work-time").html());
 		$("#work-time").html(startWorkMins);
+		updateIdleTimer(startWorkMins);
 	});
 	$("#break-time-plus").click(function() {
 		startBreakMins = add1Ciel99($("#break-time").html())
 		$("#break-time").html(startBreakMins);
+		updateIdleTimer(startWorkMins);
 	});
 
 	$("#action-button").click(function() {
 		if(curState === "idle") {
 			curTimer = startTimer(startWorkMins);
+		} else if(curState === "working") {
+			resetTimer(curTimer);
 		}
-	});	
+
+	});
 });

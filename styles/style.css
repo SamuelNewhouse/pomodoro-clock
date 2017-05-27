@@ -3,24 +3,32 @@ body {
 	text-align: center;
 }
 div {
+	position: relative;
 	align-self: center;
 	align-content: center;
 	align-items: center;
+	vertical-align: middle;
+	line-height: auto;
 	padding: 0;
-	margin: auto;
-	position: relative;
+	margin: auto;	
+	/* Prevent awkward highlighting: https://stackoverflow.com/a/28250808 */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
-h1, h2, h3, h4, h5{
+h1, h2, h3, h4, h5, h6 {
 	padding: 0;
 	margin-left: 0;
-	margin-right: 0;
+	margin-right: 0;	
 }
 .primary {
 	min-width: 460px;
 	max-width: 600px;
 }
 .minus-div {
-	position: relative;
 	text-align: right;
 	padding: 1px;
 	cursor: default;
@@ -37,19 +45,18 @@ h1, h2, h3, h4, h5{
 	height: 55%;
 	width : 25px;
 	padding: 0;
-	margin: 0;	
+	margin: 0;
 	z-index: 5;
 	cursor: pointer;
 }
-.minus-button h3{
+.minus-button h3 {
 	position: absolute;
 	top: -38%;
 	right: 10%;
 }
-.plus-div {
-	position: relative;
+.plus-div {	
 	text-align: left;
-	padding: 1px;	
+	padding: 1px;
 	cursor: default;
 }
 .plus-button {
@@ -78,16 +85,26 @@ h1, h2, h3, h4, h5{
 }
 #action-button {
 	display: inline-block;
-	padding: 0 6px 0 3px;
+	padding: 0 6px 0 3px;	
 	color: white;
 	background-color: black;
-	border: 1px solid gray;	
+	border: 1px solid gray;
 	border-radius: 0 20px 20px 0;
 	cursor: pointer;
 }
-#time-display {
+#time-display {	
 	display: inline-block;
 	padding: 0 6px 0 6px;
-	margin: 0 1px 0 1px;
-	border: 2px solid gray;		
+	margin-left: 5px;
+	width: auto;
+	height: auto;
+}
+#time-display::after {
+	content: "";
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 90%;
+	border: 2px solid black;
 }

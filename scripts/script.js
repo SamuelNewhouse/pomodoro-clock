@@ -16,9 +16,16 @@ $(function () {
 		if(curState === "idle")
 			$("#time-display").html("<h4>" + (mins < 10 ? "0" + mins : mins) + ":00" + "</h4>");
 	}
+	function resetTimer(timer) {
+		clearInterval(timer);
+		curState = "idle";
+		$("#action-button").html("<h2>Start</h2>");
+		updateIdleTimer(startWorkMins);		
+	}
+
 	function startTimer(mins) {
 		var startTime = new Date;
-		var timerms = mins * 60000 + 1000; // Date is in milliseconds. 1 extra second to account for Math.floor()
+		var timerms = mins * 60000 + 900; // Date is in milliseconds. 1 extra second to account for Math.floor()
 		curState = "working";
 
 		$("#action-button").html("<h4>Reset</h4>");
@@ -27,6 +34,18 @@ $(function () {
 		return setInterval(function() {
 			var counterTime = timerms - (Date.now() - startTime);
 
+			if(counterTime <= 0) {
+				counterTime = 0;
+				if( curState === "working" ) {
+					startTime = new Date;
+					timerms = startBreakMins * 60000 + 900;
+					curState = "breaking";
+				}
+				else {
+					resetTimer(curTimer);
+				}
+			}
+
 			var displayMins = Math.floor(counterTime / 60000);
 			counterTime -= 60000 * displayMins;
 			var displaySeconds = Math.floor(counterTime / 1000);
@@ -34,13 +53,9 @@ $(function () {
 			displayMins = displayMins < 10 ? "0" + displayMins : displayMins;
 			displaySeconds = displaySeconds < 10 ? "0" + displaySeconds : displaySeconds;
 			$("#time-display h1").html(displayMins + ":" + displaySeconds);
+
+
 		}, 100);
-	}
-	function resetTimer(timer) {
-		clearInterval(timer);
-		curState = "idle";
-		$("#action-button").html("<h2>Start</h2>");
-		updateIdleTimer(startWorkMins);		
 	}
 
 	$("#work-time-minus").click(function() {
@@ -67,7 +82,7 @@ $(function () {
 	$("#action-button").click(function() {
 		if(curState === "idle") {
 			curTimer = startTimer(startWorkMins);
-		} else if(curState === "working") {
+		} else {
 			resetTimer(curTimer);
 		}
 

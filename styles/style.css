@@ -24,8 +24,12 @@ h1, h2, h3, h4, h5, h6 {
 	margin-left: 0;
 	margin-right: 0;	
 }
+.row {
+	padding: 0;
+	margin: 0;
+}
 .primary {
-	min-width: 460px;
+	min-width: 600px;
 	max-width: 600px;
 }
 .minus-div {

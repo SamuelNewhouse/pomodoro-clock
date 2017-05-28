@@ -20,7 +20,7 @@ $(function () {
 		clearInterval(timer);
 		curState = "idle";
 		$("#action-button").html("<h2>Start</h2>");
-		updateIdleTimer(startWorkMins);		
+		updateIdleTimer(startWorkMins);
 	}
 
 	function startTimer(mins) {
@@ -32,7 +32,7 @@ $(function () {
 		$("#time-display").html("<h1>" + (mins < 10 ? "0" + mins : mins) + ":00" + "</h1>");
 
 		return setInterval(function() {
-			var counterTime = timerms - (Date.now() - startTime);
+			var counterTime = timerms - (Date.now() - startTime);			
 
 			if(counterTime <= 0) {
 				counterTime = 0;
@@ -45,6 +45,8 @@ $(function () {
 					resetTimer(curTimer);
 				}
 			}
+			var fillPercent = (timerms - counterTime) / timerms * 100;
+			$("#fill").css("width", fillPercent + "%");
 
 			var displayMins = Math.floor(counterTime / 60000);
 			counterTime -= 60000 * displayMins;
@@ -53,8 +55,6 @@ $(function () {
 			displayMins = displayMins < 10 ? "0" + displayMins : displayMins;
 			displaySeconds = displaySeconds < 10 ? "0" + displaySeconds : displaySeconds;
 			$("#time-display h1").html(displayMins + ":" + displaySeconds);
-
-
 		}, 100);
 	}
 
@@ -85,6 +85,5 @@ $(function () {
 		} else {
 			resetTimer(curTimer);
 		}
-
 	});
 });

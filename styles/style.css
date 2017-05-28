@@ -112,3 +112,14 @@ h1, h2, h3, h4, h5, h6 {
 	height: 90%;
 	border: 2px solid black;
 }
+#progress-bar {
+	align-content: left;
+	width: 100%;
+	background-color: black;
+}
+#fill {
+	margin: 0;
+	width: 0%;
+	height: 30px;
+	background-color: green;
+}

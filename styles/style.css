@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Bitter|Catamaran');
+
 body {
-	background-color: #dddddd;
+	background-color: #eeeeee;
 	text-align: center;
 }
 div {
@@ -18,6 +20,7 @@ div {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	white-space: nowrap;
 }
 h1, h2, h3, h4, h5, h6 {
 	padding: 0;
@@ -36,6 +39,7 @@ h1, h2, h3, h4, h5, h6 {
 	text-align: right;
 	padding: 1px;
 	cursor: default;
+	margin-left: 6%;
 }
 .minus-button {
 	color: white;
@@ -45,13 +49,13 @@ h1, h2, h3, h4, h5, h6 {
 	position: absolute;
 	overflow: hidden;
 	top: 20%;
-	right: -10%;
+	right: -24%;
 	height: 55%;
 	width : 25px;
 	padding: 0;
 	margin: 0;
 	z-index: 5;
-	cursor: pointer;
+	cursor: pointer;	
 }
 .minus-button h3 {
 	position: absolute;
@@ -83,6 +87,24 @@ h1, h2, h3, h4, h5, h6 {
 	position: absolute;
 	top: -38%;
 	left: 10%;
+}
+.work-time-h {
+	color: #394939;
+	font-family: 'Bitter', serif;
+	margin-left: -6%;
+}
+.break-time-h {
+	color: #393949;
+	font-family: 'Catamaran', sans-serif;
+	margin-left: -6%;
+}
+#work-time {
+	color: #394939;
+	font-family: 'Bitter', serif;
+}
+#break-time {
+	color: #393949;
+	font-family: 'Catamaran', sans-serif;
 }
 #action-div {
 	cursor: default;	

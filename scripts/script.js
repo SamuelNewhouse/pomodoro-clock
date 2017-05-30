@@ -21,12 +21,12 @@ $(function () {
 		curState = "idle";
 		$("#action-button").html("<h2>Start</h2>");
 		updateIdleTimer(startWorkMins);
+		$("#fill").css("width", "0%");
 	}
 
 	function startTimer(mins) {
 		var startTime = new Date;
 		var timerms = mins * 60000 + 900; // Date is in milliseconds. 1 extra second to account for Math.floor()
-		curState = "working";
 
 		$("#action-button").html("<h4>Reset</h4>");
 		$("#time-display").html("<h1>" + (mins < 10 ? "0" + mins : mins) + ":00" + "</h1>");
@@ -42,9 +42,16 @@ $(function () {
 					curState = "breaking";
 				}
 				else {
-					resetTimer(curTimer);
+					resetTimer(curTimer);					
+					return;
 				}
 			}
+
+			if(curState === "working")
+				$("#fill").css("background-color", "#87af87");
+			else
+				$("#fill").css("background-color", "#8787af");
+
 			var fillPercent = (timerms - counterTime) / timerms * 100;
 			$("#fill").css("width", fillPercent + "%");
 
@@ -81,6 +88,7 @@ $(function () {
 
 	$("#action-button").click(function() {
 		if(curState === "idle") {
+			curState = "working";
 			curTimer = startTimer(startWorkMins);
 		} else {
 			resetTimer(curTimer);

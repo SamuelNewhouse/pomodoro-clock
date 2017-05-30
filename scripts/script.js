@@ -27,6 +27,7 @@ $(function () {
 	function startTimer(mins) {
 		var startTime = new Date;
 		var timerms = mins * 60000 + 900; // Date is in milliseconds. 1 extra second to account for Math.floor()
+		var alarmPlaying = false;
 
 		$("#action-button").html("<h4>Reset</h4>");
 		$("#time-display").html("<h1>" + (mins < 10 ? "0" + mins : mins) + ":00" + "</h1>");
@@ -34,8 +35,14 @@ $(function () {
 		return setInterval(function() {
 			var counterTime = timerms - (Date.now() - startTime);			
 
+			if(counterTime <= 3000 && alarmPlaying === false) {
+				alarmPlaying === true;
+				playAlarmSound();
+			}
+
 			if(counterTime <= 0) {
 				counterTime = 0;
+				alarmPlaying === false;
 				if( curState === "working" ) {
 					startTime = new Date;
 					timerms = startBreakMins * 60000 + 900;

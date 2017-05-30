@@ -8,8 +8,6 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
 	 crossorigin="anonymous">
 	<link href="styles/style.css" rel="stylesheet" type="text/css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="scripts/script.js"></script>
 	<title>Pomodoro Clock</title>
 </head>
 
@@ -66,7 +64,16 @@
 		</div>
 		<br>
 		<p>Made by <a href="https://github.com/SamuelNewhouse" target="_blank">Samuel Newhouse</a></p>
-	</div>	
+	</div>
+	<footer>
+		<audio id="alarm-sound" src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Alarmclock-mechanical.ogg" type="audio/ogg" preload="auto"></audio>
+		<script type="text/javascript">
+			function playAlarmSound() {
+				document.getElementById('alarm-sound').play();
+			}
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="scripts/script.js"></script>
+	</footer>
 </body>
-
 </html>
